@@ -8,7 +8,7 @@ import com.com470.mockito1app.controller.ExcepcionUsuarioDesconocido;
 public class GestorLogin {
 
 	private IRepositorioCuentas repo;
-	private int numFallos;
+	int numFallos;
 	private static final int MAX_FALLOS = 3;
 	private String usuarioAnterior = "";
 

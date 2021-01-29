@@ -31,7 +31,7 @@ import static org.mockito.Mockito.when;
  */
 public class GestorLoginTest {
     
-    GestorLogin login;
+        GestorLogin login;
 	IRepositorioCuentas repo; // collaborator
         @Mock
 	ICuenta cuenta; // collaborator
@@ -74,11 +74,11 @@ public class GestorLoginTest {
 	}
         @Test
 	public void testBloquearTrasTresIntentos() {
-		when(cuenta.claveCorrecta("1235")).thenReturn(false);
+		when(cuenta.claveCorrecta("1111")).thenReturn(false);
                 //GestorLogin login = new GestorLogin(repo);
-		login.acceder("pepe", "1235");		
-		login.acceder("pepe", "1235");
-		login.acceder("pepe", "1235");
+		login.acceder("pepe", "1111");		
+		login.acceder("pepe", "1111");
+		login.acceder("pepe", "1111");
 		verify(cuenta).bloquearCuenta();
 		verify(cuenta,times(1)).bloquearCuenta();
 		verify(cuenta, atLeastOnce()).bloquearCuenta();
@@ -87,10 +87,10 @@ public class GestorLoginTest {
         @Test
 	public void testAccederTrasDosIntentos() {
 		when(cuenta.claveCorrecta("1234")).thenReturn(true);
-		when(cuenta.claveCorrecta("1235")).thenReturn(false);
+		when(cuenta.claveCorrecta("1111")).thenReturn(false);
                 //GestorLogin login = new GestorLogin(repo);
-		login.acceder("pepe", "1235");
-		login.acceder("pepe", "1235");
+		login.acceder("pepe", "1111");
+		login.acceder("pepe", "1111");
 		login.acceder("pepe", "1234");	
 		verify(cuenta,times(1)).entrarCuenta();
 		verify(cuenta,never()).bloquearCuenta();
@@ -99,12 +99,12 @@ public class GestorLoginTest {
 
         @Test
 	public void testBloqueadarTrasCuatroIntentos() {
-		when(cuenta.claveCorrecta("1235")).thenReturn(false);
+		when(cuenta.claveCorrecta("1111")).thenReturn(false);
 		//GestorLogin login = new GestorLogin(repo);
-		login.acceder("pepe", "1235");		
-		login.acceder("pepe", "1235");
-		login.acceder("pepe", "1235");
-		login.acceder("pepe", "1235");
+		login.acceder("pepe", "1111");		
+		login.acceder("pepe", "1111");
+		login.acceder("pepe", "1111");
+		login.acceder("pepe", "1111");
 
 		verify(cuenta,times(1)).bloquearCuenta();
 		assertEquals(login.numFallos, 4);	
